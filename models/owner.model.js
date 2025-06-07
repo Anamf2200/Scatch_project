@@ -2,19 +2,22 @@ const mongoose= require("mongoose")
 
 const ownerSchema= mongoose.Schema({
     name:{
-        typeof:String,
-        minLength:3,
+        type:String,
+        minlength:3,
         trim:true
     },
     email:String,
     password:String,
    
     product:{
-        typeof:Array,
+        type:Array,
         default:[]
     },
     pictures:String,
-gstin:String
-
+role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user"
+  }
 })
 module.exports=mongoose.model('owner',ownerSchema);

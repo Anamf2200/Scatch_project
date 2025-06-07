@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 h-screen flex items-center justify-center">
+
+  <%- include('./partials/header') %>
+
+  <div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md ">
+    <% if (user) { %>
+      <h2 class="text-2xl font-semibold mb-2 text-blue-600">Welcome, <%= user.name %> <span class="text-sm text-gray-500"></span></h2>
+      <p class="text-lg">Email: <span class="font-medium"><%= user.email %></span></p>
+    <% } %>
+
+    <% if (admin) { %>
+      <h2 class="text-2xl font-semibold mb-2 text-green-600">Welcome, <%= admin.name %> <span class="text-sm text-gray-500">(Admin)</span></h2>
+      <p class="text-lg">Email: <span class="font-medium"><%= admin.email %></span></p>
+    <% } %>
+  </div>
+
+  <%- include('./partials/footer') %>
+</body>
+</html>

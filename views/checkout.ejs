@@ -1,0 +1,34 @@
+<%- include('./partials/header') %>
+
+<div class="min-h-screen flex flex-col items-center justify-center py-20">
+  <div class="bg-white shadow-lg rounded-lg p-10 w-2/3">
+    <h2 class="text-3xl font-bold mb-6 text-center text-green-600">Checkout Summary</h2>
+
+    <% if (user && user.cart.length > 0) { %>
+      <% let total = 0; %>
+      <% user.cart.forEach(item => { 
+           let itemTotal = Number(item.price) + 20 - Number(item.discount);
+           total += itemTotal;
+      %>
+        <div class="mb-4 border-b pb-4">
+          <h3 class="text-xl font-semibold"><%= item.name %></h3>
+          <p>Price: ₹<%= item.price %></p>
+          <p>Discount: ₹<%= item.discount %></p>
+          <p>Platform Fee: ₹20</p>
+          <p>Total for this item: ₹<%= itemTotal %></p>
+        </div>
+      <% }) %>
+
+    <form action="/placeorder" method="POST">
+  <button type="submit" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+    Place Order
+  </button>
+</form>
+
+    <% } else { %>
+      <p class="text-center text-red-500 text-lg">Your cart is empty.</p>
+    <% } %>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

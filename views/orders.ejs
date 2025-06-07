@@ -1,0 +1,24 @@
+<%- include('./partials/header') %>
+
+<div class="min-h-screen py-20 px-10">
+  <h2 class="text-3xl font-bold text-center mb-8">Your Orders</h2>
+
+  <% if (orders.length > 0) { %>
+    <% orders.forEach(order => { %>
+      <div class="border rounded p-4 mb-6 shadow-md">
+        <h3 class="text-xl font-semibold mb-2">Order Date: <%= new Date(order.date).toLocaleString() %></h3>
+        <% order.items.forEach(item => { %>
+          <div class="pl-4 mb-2">
+            <p><strong>Product:</strong> <%= item.name %></p>
+            <p><strong>Total:</strong> ₹ <%= item.total %></p>
+          </div>
+        <% }) %>
+        <h4 class="text-right font-bold mt-4">Grand Total: ₹ <%= order.totalAmount %></h4>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <p class="text-center text-gray-600">You have not placed any orders yet.</p>
+  <% } %>
+</div>
+
+<%- include('./partials/footer') %>

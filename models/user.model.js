@@ -2,21 +2,42 @@ const mongoose= require("mongoose")
 
 const userSchema= mongoose.Schema({
     name:{
-        typeof:String,
-        minLength:3,
+        type:String,
+        minlength:3,
         trim:true
     },
     email:String,
     password:String,
-    cart:{
-        typeof:Array,
-        default:[]
-    },
-    isAdmin:Boolean,
-    order:{
-        typeof:Array,
-        default:[]
-    },
+    cart:[{
+        type:mongoose.Schema.ObjectId,
+ref:"product"    }],
+   orders: [
+  {
+    items: [
+      {
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "product"
+        },
+        name: String,
+        price: Number,
+        discount: Number,
+        platformFee: Number,
+        total: Number
+      }
+    ],
+    totalAmount: Number,
+ 
+
+    date: Date
+  }
+],
+   role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user"
+  },
+
     pictures:String,
     contact:Number
 
